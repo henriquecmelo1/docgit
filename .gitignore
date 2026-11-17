@@ -23,3 +23,7 @@ credentials.json
 token.json
 **/credentials.json
 **/token.json
+
+# Agent files
+AGENTS.md
+.agents/
