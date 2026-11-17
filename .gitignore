@@ -24,6 +24,10 @@ token.json
 **/credentials.json
 **/token.json
 
+# Phase 3 local spike evidence and exports
+artifacts/phase-3/
+*.docx
+
 # Agent files
 AGENTS.md
 .agents/
