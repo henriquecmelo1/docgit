@@ -53,12 +53,15 @@ def test_cli_core_flow(tmp_path: Path, monkeypatch) -> None:
     monkeypatch.chdir(tmp_path)
 
     initialized = runner.invoke(app, ["init", "document-id"])
+    provider.content = b"committed-change"
+    committed = runner.invoke(app, ["commit", "-m", "Update document"])
     created = runner.invoke(app, ["branch", "feature"])
     listed = runner.invoke(app, ["branch"])
     checked_out = runner.invoke(app, ["checkout", "feature"])
     history = runner.invoke(app, ["log"])
 
     assert initialized.exit_code == 0
+    assert committed.exit_code == 0
     assert created.exit_code == 0
     assert listed.exit_code == 0
     assert "* main" in listed.stdout
