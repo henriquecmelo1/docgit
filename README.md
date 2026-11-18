@@ -3,6 +3,10 @@
 Controle de versão estilo Git para Google Docs, com commits com mensagem,
 branches e snapshots locais em `.docx`.
 
+## Demonstração
+
+![Demonstração](DocGit---Roteiro.gif)
+
 ## Visão geral
 
 O Google Docs tem histórico de versões, mas ele é linear, automático e difícil
