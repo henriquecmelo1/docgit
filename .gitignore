@@ -31,3 +31,6 @@ artifacts/phase-3/
 # Agent files
 AGENTS.md
 .agents/
+
+# Output files
+.docgit
