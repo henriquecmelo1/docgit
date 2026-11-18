@@ -57,6 +57,19 @@ class _UnavailableRuntimeFactory:
 _runtime_factory: RuntimeFactory = _UnavailableRuntimeFactory()
 
 
+def _configure_google_runtime_factory() -> None:
+    """Configure the default runtime factory for Google-backed commands."""
+    global _runtime_factory
+    try:
+        from docgit.gdocs.factory import GoogleRuntimeFactory
+    except ImportError:
+        return
+    _runtime_factory = GoogleRuntimeFactory()
+
+
+_configure_google_runtime_factory()
+
+
 def configure_runtime_factory(factory: RuntimeFactory) -> None:
     """Inject a provider factory for the CLI."""
     global _runtime_factory
@@ -190,10 +203,16 @@ def _not_implemented(command: str) -> None:
     raise typer.Exit(code=1)
 
 
-@app.command(help=f"{_NOT_IMPLEMENTED} Autenticar no Google.")
+@app.command(help="Autenticar no Google.")
 def auth() -> None:
-    """Authenticate with Google in a later phase."""
-    _not_implemented("auth")
+    """Authenticate with Google and persist the OAuth token."""
+    try:
+        from docgit.gdocs.auth import authenticate
+
+        authenticate()
+    except DocgitError as error:
+        _handle_error(error)
+    typer.echo("Autenticação concluída.")
 
 
 @app.command(help=f"{_NOT_IMPLEMENTED} Mostrar alterações não commitadas.")

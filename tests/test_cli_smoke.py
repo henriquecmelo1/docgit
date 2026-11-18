@@ -26,7 +26,7 @@ def test_help_marks_unimplemented_commands() -> None:
     result = runner.invoke(app, ["--help"])
 
     assert result.exit_code == 0
-    assert result.stdout.count("[NOT IMPLEMENTED]") == 3
+    assert result.stdout.count("[NOT IMPLEMENTED]") == 2
 
 
 def test_unimplemented_command_explains_development_status() -> None:
